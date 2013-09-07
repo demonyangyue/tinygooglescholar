@@ -1,0 +1,572 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0051)http://blog.csdn.net/donhao/article/details/8292913 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Lucene4.0 Demo部署 - 黎敏香草 - 博客频道 - CSDN.NET</title>
+
+<meta name="description" content="Lucene4.0自带的Demo存在bug，本文描述如何部署Demo。前提条件：安装了JDK、Tomcat、Eclipse (EE)，下载了Lucene 4.0压缩文件和源码文件。1. 在Eclipse忠创建一个Dynamic Web Project2. 将lucene-4.0.0-src\lucene-4.0.0\demo\src\java文件夹中的内容复制到Eclipse工程的sr">
+<script type="text/javascript" async="" src="./lucene4.0 Demo_files/ga.js"></script><script src="./lucene4.0 Demo_files/jquery.js" type="text/javascript"></script><style type="text/css"></style>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/ad.js?v=1.1"></script>
+<link rel="Stylesheet" type="text/css" href="./lucene4.0 Demo_files/style.css">
+<link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/donhao/rss/list">
+<link rel="shortcut icon" href="http://blog.csdn.net/favicon.ico">
+<link type="text/css" rel="stylesheet" href="./lucene4.0 Demo_files/default.css">
+</head>
+<body>
+<script src="./lucene4.0 Demo_files/pub_topnav_2011.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="./lucene4.0 Demo_files/navtop_2012.css">
+<div class="nav_top_2011">
+<p><span style="color:red;">您还未登录！</span>|<a href="https://passport.csdn.net/account/login" target="_top">登录</a>|<a href="https://passport.csdn.net/account/register" target="_top">注册</a>|<a href="https://passport.csdn.net/help/faq" target="_blank">帮助</a></p><ul>
+<li><a href="http://www.csdn.net/" target="_blank">首页</a></li>
+<li><a href="http://news.csdn.net/" target="_blank">业界</a></li>
+<li><a href="http://mobile.csdn.net/" target="_blank">移动</a></li>
+<li><a href="http://cloud.csdn.net/" target="_blank">云计算</a></li>
+<li><a href="http://sd.csdn.net/" target="_blank">研发</a></li>
+<li><a href="http://bbs.csdn.net/" target="_blank">论坛</a></li>
+<li><a href="http://blog.csdn.net/" target="_blank">博客</a></li>
+<li><a href="http://download.csdn.net/" target="_blank">下载</a></li>
+<li class="more"><h2 id="topnav_btnmore" onclick="showNavMore(this)"><a href="javascript:void(0);">更多</a></h2>
+<div id="topnav_hidlist">
+<iframe name="nav_frm" src="about:blank" width="92" height="178" scrolling="no" frameborder="no"></iframe>
+</div>
+</li>
+</ul>
+</div>
+
+
+<div id="container">
+<div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h1><a href="http://blog.csdn.net/donhao">黎敏香草</a></h1>
+            <h2>学，然后知不足</h2>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg"></div>
+    <div class="navigator">
+        <ul>
+            <li id="btnContents"><a href="http://blog.csdn.net/donhao?viewmode=contents"><span><img src="./lucene4.0 Demo_files/ico_list.gif">目录视图</span></a></li>
+            <li id="btnView"><a href="http://blog.csdn.net/donhao?viewmode=list"><span><img src="./lucene4.0 Demo_files/ico_summary.gif">摘要视图</span></a></li>
+            <li id="btnRss"><a href="http://blog.csdn.net/donhao/rss/list"><span><img src="./lucene4.0 Demo_files/ico_rss.gif">订阅</span></a></li>
+</ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "donhao";
+    var blog_address = "http://blog.csdn.net/donhao";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";
+</script>
+        
+<div id="body">
+<div id="main">
+<div class="main">
+<div class="notice"> 
+
+<a href="http://surveies.csdn.net/survey/comein/532" target="_blank">
+<font color="blue">博客专家信息更新登记表   </font></a>
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/8572108" target="_blank"><font color="red">社区专家谈 12306</font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://bbs.csdn.net/topics/390373496" target="_blank"><font color="red">CSDN社区程序员回乡见闻活动火爆开始！
+
+</font></a>
+
+<br>
+
+
+
+
+
+<a href="http://www.csdn.net/article/2013-03-05/2814348" target="_blank">
+<font color="red">专访陈勇： 敏捷开发现状及发展之路
+
+ </font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://huiyi.csdn.net/tech/view/223" target="_blank">
+<font color="red">“传统商家移动化之路”会议
+ </font></a>
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/csdnstudent/article/details/8077932" target="_blank">
+<font color="red">2013年全国百所高校巡讲讲师招募  </font></a>
+
+
+</div><div id="article_details" class="details">
+    <div class="article_title">
+    <span class="ico ico_type_Original"></span>
+    <h3>
+        <span class="link_title"><a href="./lucene4.0 Demo_files/lucene4.0 Demo.html">
+        Lucene4.0 Demo部署
+        </a></span>
+    </h3>
+</div>
+
+        
+    <div class="article_manage">
+    <span class="link_postdate">2012-12-13 22:48</span>
+    <span class="link_view" title="阅读次数">164人阅读</span>
+    <span class="link_comments" title="评论次数"><a href="http://blog.csdn.net/donhao/article/details/8292913#comments">评论</a>(0)</span>
+    <span class="link_collect"><a href="javascript:void(0);" onclick="javascript:collectArticle(&#39;Lucene4.0 Demo部署&#39;,&#39;8292913&#39;);return false;" title="收藏">收藏</a></span>
+    <span class="link_report"><a href="http://blog.csdn.net/donhao/article/details/8292913#report" onclick="javascript:report(8292913,2);return false;" title="举报">举报</a></span>
+    
+</div>
+
+
+    
+<div id="article_content" class="article_content">
+
+<p>Lucene4.0自带的Demo存在bug，本文描述如何部署Demo。</p>
+<p>前提条件：安装了JDK、Tomcat、Eclipse (EE)，下载了Lucene 4.0压缩文件和源码文件。</p>
+<p>1. 在Eclipse忠创建一个Dynamic Web Project</p>
+<p>2. 将lucene-4.0.0-src\lucene-4.0.0\demo\src\java文件夹中的内容复制到Eclipse工程的src目录下</p>
+<p>3. 将lucene-4.0.0-src\lucene-4.0.0\demo\src\resources\org\apache\lucene\demo\xmlparser中的内容覆盖Eclipse工程的WebContent文件夹中的内容</p>
+<p>4. 将lucene-analyzers-common-4.0.0.jar、lucene-core-4.0.0.jar、lucene-queries-4.0.0.jar、lucene-queryparser-4.0.0.jar、lucene-sandbox-4.0.0.jar复制到Eclipse工程的WebContent\lib文件夹中</p>
+<p>5. 修改Eclipse工程的WebContent\WEB-INF\web.xml文件，修改内容为红色部分：</p>
+<div class="dp-highlighter bg_html"><div class="bar"><div class="tools"><b>[html]</b> <a href="http://blog.csdn.net/donhao/article/details/8292913#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://blog.csdn.net/donhao/article/details/8292913#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><a href="http://blog.csdn.net/donhao/article/details/8292913#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://blog.csdn.net/donhao/article/details/8292913#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><div style="position: absolute; left: 385px; top: 660px; width: 18px; height: 18px; z-index: 99; "><embed id="ZeroClipboardMovie_1" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=18&amp;height=18" wmode="transparent"></div></div></div><ol start="1" class="dp-xml"><li class="alt"><span><span class="tag">&lt;?</span><span class="tag-name">xml</span><span>&nbsp;</span><span class="attribute">version</span><span>=</span><span class="attribute-value">"1.0"</span><span>&nbsp;</span><span class="attribute">encoding</span><span>=</span><span class="attribute-value">"UTF-8"</span><span class="tag">?&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&lt;!--&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;Licensed&nbsp;to&nbsp;the&nbsp;Apache&nbsp;Software&nbsp;Foundation&nbsp;(ASF)&nbsp;under&nbsp;one&nbsp;or&nbsp;more&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;contributor&nbsp;license&nbsp;agreements.&nbsp;&nbsp;See&nbsp;the&nbsp;NOTICE&nbsp;file&nbsp;distributed&nbsp;with&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;this&nbsp;work&nbsp;for&nbsp;additional&nbsp;information&nbsp;regarding&nbsp;copyright&nbsp;ownership.&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;The&nbsp;ASF&nbsp;licenses&nbsp;this&nbsp;file&nbsp;to&nbsp;You&nbsp;under&nbsp;the&nbsp;Apache&nbsp;License,&nbsp;Version&nbsp;2.0&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;(the&nbsp;"License");&nbsp;you&nbsp;may&nbsp;not&nbsp;use&nbsp;this&nbsp;file&nbsp;except&nbsp;in&nbsp;compliance&nbsp;with&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;the&nbsp;License.&nbsp;&nbsp;You&nbsp;may&nbsp;obtain&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;License&nbsp;at&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://www.apache.org/licenses/LICENSE-2.0&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;Unless&nbsp;required&nbsp;by&nbsp;applicable&nbsp;law&nbsp;or&nbsp;agreed&nbsp;to&nbsp;in&nbsp;writing,&nbsp;software&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;distributed&nbsp;under&nbsp;the&nbsp;License&nbsp;is&nbsp;distributed&nbsp;on&nbsp;an&nbsp;"AS&nbsp;IS"&nbsp;BASIS,&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;WITHOUT&nbsp;WARRANTIES&nbsp;OR&nbsp;CONDITIONS&nbsp;OF&nbsp;ANY&nbsp;KIND,&nbsp;either&nbsp;express&nbsp;or&nbsp;implied.&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;See&nbsp;the&nbsp;License&nbsp;for&nbsp;the&nbsp;specific&nbsp;language&nbsp;governing&nbsp;permissions&nbsp;and&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;limitations&nbsp;under&nbsp;the&nbsp;License.&nbsp;&nbsp;</span></li><li class="alt"><span>--<span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="tag">&lt;</span><span class="tag-name">web-app</span><span>&nbsp;</span><span class="attribute">id</span><span>=</span><span class="attribute-value">"WebApp_ID"</span><span>&nbsp;</span><span class="attribute">version</span><span>=</span><span class="attribute-value">"2.4"</span><span>&nbsp;</span><span class="attribute">xmlns</span><span>=</span><span class="attribute-value">"http://java.sun.com/xml/ns/j2ee"</span><span>&nbsp;</span><span class="attribute">xmlns:xsi</span><span>=</span><span class="attribute-value">"http://www.w3.org/2001/XMLSchema-instance"</span><span>&nbsp;</span><span class="attribute">xsi:schemaLocation</span><span>=</span><span class="attribute-value">"http://java.sun.com/xml/ns/j2ee&nbsp;http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">display-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;LuceneXmlQueryWebDemo<span class="tag">&lt;/</span><span class="tag-name">display-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">servlet</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">description</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Servlet&nbsp;demonstrating&nbsp;XMLQueryParser<span class="tag">&lt;/</span><span class="tag-name">description</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">display-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FormBasedXmlQueryDemo<span class="tag">&lt;/</span><span class="tag-name">display-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">servlet-name</span><span class="tag">&gt;</span><span>FormBasedXmlQueryDemo</span><span class="tag">&lt;/</span><span class="tag-name">servlet-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">span</span><span>&nbsp;</span><span class="attribute">style</span><span>=</span><span class="attribute-value">"color:#ff0000;"</span><span class="tag">&gt;</span><span class="tag">&lt;</span><span class="tag-name">servlet-class</span><span class="tag">&gt;</span><span>org.apache.lucene.demo.xmlparser.FormBasedXmlQueryDemo</span><span class="tag">&lt;/</span><span class="tag-name">servlet-class</span><span class="tag">&gt;</span><span class="tag">&lt;/</span><span class="tag-name">span</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">init-param</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">description</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;of&nbsp;query&nbsp;file&nbsp;held&nbsp;in&nbsp;/WEB-INF<span class="tag">&lt;/</span><span class="tag-name">description</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">param-name</span><span class="tag">&gt;</span><span>xslFile</span><span class="tag">&lt;/</span><span class="tag-name">param-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">param-value</span><span class="tag">&gt;</span><span>query.xsl</span><span class="tag">&lt;/</span><span class="tag-name">param-value</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">init-param</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">init-param</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">description</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default&nbsp;field&nbsp;used&nbsp;in&nbsp;standard&nbsp;Lucene&nbsp;QueryParser&nbsp;used&nbsp;in&nbsp;UserQuery&nbsp;tag<span class="tag">&lt;/</span><span class="tag-name">description</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">param-name</span><span class="tag">&gt;</span><span>defaultStandardQueryParserField</span><span class="tag">&lt;/</span><span class="tag-name">param-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">param-value</span><span class="tag">&gt;</span><span>jobDescription</span><span class="tag">&lt;/</span><span class="tag-name">param-value</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">init-param</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">servlet</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">servlet-mapping</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">servlet-name</span><span class="tag">&gt;</span><span>FormBasedXmlQueryDemo</span><span class="tag">&lt;/</span><span class="tag-name">servlet-name</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>/FormBasedXmlQueryDemo</span><span class="tag">&lt;/</span><span class="tag-name">url-pattern</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">servlet-mapping</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">welcome-file-list</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">welcome-file</span><span class="tag">&gt;</span><span>index.jsp</span><span class="tag">&lt;/</span><span class="tag-name">welcome-file</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">welcome-file-list</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="tag">&lt;/</span><span class="tag-name">web-app</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="html" style="display: none; ">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!--
+ Licensed to the Apache Software Foundation (ASF) under one or more
+ contributor license agreements.  See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License, Version 2.0
+ (the "License"); you may not use this file except in compliance with
+ the License.  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+--&gt;
+&lt;web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"&gt;
+	&lt;display-name&gt;
+	LuceneXmlQueryWebDemo&lt;/display-name&gt;
+	&lt;servlet&gt;
+		&lt;description&gt;
+		Servlet demonstrating XMLQueryParser&lt;/description&gt;
+		&lt;display-name&gt;
+		FormBasedXmlQueryDemo&lt;/display-name&gt;
+		&lt;servlet-name&gt;FormBasedXmlQueryDemo&lt;/servlet-name&gt;
+		<span style="color:#ff0000;">&lt;servlet-class&gt;org.apache.lucene.demo.xmlparser.FormBasedXmlQueryDemo&lt;/servlet-class&gt;</span>
+		&lt;init-param&gt;
+			&lt;description&gt;
+			Name of query file held in /WEB-INF&lt;/description&gt;
+			&lt;param-name&gt;xslFile&lt;/param-name&gt;
+			&lt;param-value&gt;query.xsl&lt;/param-value&gt;
+		&lt;/init-param&gt;
+		&lt;init-param&gt;
+			&lt;description&gt;
+			Default field used in standard Lucene QueryParser used in UserQuery tag&lt;/description&gt;
+			&lt;param-name&gt;defaultStandardQueryParserField&lt;/param-name&gt;
+			&lt;param-value&gt;jobDescription&lt;/param-value&gt;
+		&lt;/init-param&gt;
+	&lt;/servlet&gt;
+	&lt;servlet-mapping&gt;
+		&lt;servlet-name&gt;FormBasedXmlQueryDemo&lt;/servlet-name&gt;
+		&lt;url-pattern&gt;/FormBasedXmlQueryDemo&lt;/url-pattern&gt;
+	&lt;/servlet-mapping&gt;
+	&lt;welcome-file-list&gt;
+		&lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;
+	&lt;/welcome-file-list&gt;
+&lt;/web-app&gt;
+</pre>
+<p></p>
+<p>整个工程结构如下图：</p>
+<p><img src="./lucene4.0 Demo_files/1355410370_4503.jpg" alt=""><br>
+</p>
+6. Export出war文件，然后将文件放到tomcat的webapp目录下
+<p>7. 在浏览器中输入http://localhost:8080/lucene/，然后搜索lucene，页面如下：</p>
+<p><img src="./lucene4.0 Demo_files/1355410375_1641.jpg" alt=""><br>
+</p>
+
+</div>
+<div class="share_buttons" id="sharePanel"><span>分享到：</span> <a name="sina" class="share_sina" title="分享到新浪微博"></a><a name="qq" class="share_qq" title="分享到腾讯微博"></a></div>
+<!--192.168.1.236-->
+<div class="article_next_prev">
+    <li class="prev_article"><span>上一篇：</span><a href="http://blog.csdn.net/donhao/article/details/8069239">VS下运行和直接双击exe运行结果不同的解决方法</a></li>
+    <li class="next_article"><span>下一篇：</span><a href="http://blog.csdn.net/donhao/article/details/8471692">Android的webview显示页面格式不正确的解决方法</a></li>
+</div>
+
+
+    
+</div>
+<div id="ad_cen"></div>
+<script type="text/javascript">
+    new Ad(4, 'ad_cen');
+</script>
+<div id="comment_title" class="panel_head">查看评论<a name="comments"></a></div>
+<div id="comment_list"><br>&nbsp;&nbsp;暂无评论<br><br><div class="clear"></div></div>
+<div id="comment_bar"></div>
+<div id="comment_form"><div class="guest_link">您还没有登录,请<a href="javascript:void(0);" onclick="javascript:csdn.showLogin(function (dat) {js_logined(dat.data.userName);});">[登录]</a>或<a href="http://passport.csdn.net/account/register?from=http%3A%2F%2Fblog.csdn.net%2Fdonhao%2Farticle%2Fdetails%2F8292913">[注册]</a></div></div>
+<div class="announce">* 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+<script type="text/javascript">
+    var fileName = '8292913';
+    var commentscount = 0;
+    var islock = false
+</script>
+<script type="text/javascript" src="./lucene4.0 Demo_files/comment.js"></script>
+<div id="ad_bot"></div>
+<script type="text/javascript">
+    new Ad(5, 'ad_bot');
+</script>
+<div id="report_dialog"></div>
+
+<div id="d-top" style="display: none; ">
+<a id="d-top-a" href="http://blog.csdn.net/donhao/article/details/8292913#" title="回到顶部">
+<img src="./lucene4.0 Demo_files/top.png" alt="TOP"></a>
+</div>
+<script type="text/javascript">
+    $(function(){
+        var d_top=$('#d-top');
+        document.onscroll=function(){
+            var scrTop=(document.body.scrollTop||document.documentElement.scrollTop);
+            if(scrTop>500){
+                d_top.show();
+            }else{
+                d_top.hide();
+            }
+        }
+        $('#d-top-a').click(function(){
+            scrollTo(0,0);
+            this.blur();
+            return false;
+        });
+    });
+</script>
+
+
+
+<div class="clear"></div>
+</div>
+</div>
+
+<div id="side">
+<div class="side">
+<div id="panel_Profile" class="panel">
+    <ul class="panel_head"><span>个人资料</span></ul>
+    <ul class="panel_body profile">
+        <div id="blog_userface">
+            <a href="http://my.csdn.net/donhao" target="_blank">
+            <img src="./lucene4.0 Demo_files/1_donhao.jpg" title="访问我的空间" style="max-width:90%">
+            </a>
+            <br>
+            <span><a href="http://my.csdn.net/donhao" class="user_name" target="_blank">DonHao</a></span>
+        </div>
+<div class="interact">
+<!--<a href="#" class="attented" title="已关注"></a>-->
+<a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+<a href="javascript:void(0);" class="letter" onclick="loginto(1)" title="[发私信]"></a>
+</div>
+        <div id="blog_medal">
+        <div id="bms_box"><a href="http://medal.blog.csdn.net/allmedal.aspx" target="_blank"><img src="./lucene4.0 Demo_files/zhun_s.gif" onmouseover="m_over_m(this,0)" onmouseout="m_out_m()" alt=""></a><a href="http://medal.blog.csdn.net/allmedal.aspx" target="_blank"><img src="./lucene4.0 Demo_files/holdon_s2.gif" onmouseover="m_over_m(this,1)" onmouseout="m_out_m()" alt=""></a></div></div>
+        <ul id="blog_rank">
+            <li>访问：<span>151103次</span></li>
+            <li>积分：<span>5799分</span></li>
+            <li>排名：<span>第628名</span></li>
+        </ul>
+        <ul id="blog_statistics">
+            <li>原创：<span>394篇</span></li>
+            <li>转载：<span>3篇</span></li>
+            <li>译文：<span>56篇</span></li>
+            <li>评论：<span>79条</span></li>
+        </ul>
+    </ul>
+</div>
+<script type="text/javascript">
+    var _blogger = 'donhao';
+</script>
+
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"></span>
+        <input id="btnSubmit" type="submit" value="搜索" title="search in blog">
+        <input type="hidden" name="q" id="inputQ">
+        <input type="hidden" name="t" value="blog">
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div><div id="panel_Category" class="panel">
+    <ul class="panel_head"><span>文章分类</span></ul>
+    <ul class="panel_body">
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/779070">Safety</a><span>(1)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/687520">C</a><span>(47)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/687519">C++</a><span>(97)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/687521">Java</a><span>(36)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/687523">Linux</a><span>(42)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/777687">MBA</a><span>(5)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/699345">UML</a><span>(8)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/687524">VxWorks</a><span>(6)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/687522">Windows</a><span>(38)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/701616">XML</a><span>(10)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/746060">其他</a><span>(1)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/700354">周易</a><span>(12)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/692208">多核编程</a><span>(10)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/701000">操作系统</a><span>(28)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/701607">数据库</a><span>(19)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/699064">数据结构</a><span>(14)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/779946">杂记</a><span>(9)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/701599">生活</a><span>(41)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/699208">网络</a><span>(14)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/698169">职场</a><span>(2)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/709434">读书札记</a><span>(1)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/706895">项目管理</a><span>(26)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/843610">ASP.net C#</a><span>(71)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/849364">PS</a><span>(2)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/871354">Security</a><span>(4)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/877452">iOS</a><span>(21)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/879308">Architecture</a><span>(5)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/882459">敏捷</a><span>(1)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/940649">Vehicle</a><span>(1)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/1206620">Financial</a><span>(3)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/donhao/article/category/1220888">APP</a><span>(3)</span>
+        </li>
+    </ul>
+</div><div id="panel_Archive" class="panel">
+    <ul class="panel_head"><span>文章存档</span></ul>
+    <ul class="panel_body">
+        <div id="archive_list"><li><a href="http://blog.csdn.net/donhao/article/month/2013/02">2013年02月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/donhao/article/month/2013/01">2013年01月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/donhao/article/month/2012/12">2012年12月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/donhao/article/month/2012/10">2012年10月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/donhao/article/month/2012/09">2012年09月</a><span>(2)</span></li><span class="hidelist" style="display:none;"><li><a href="http://blog.csdn.net/donhao/article/month/2012/08">2012年08月</a><span>(14)</span></li><li><a href="http://blog.csdn.net/donhao/article/month/2012/07">2012年07月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/donhao/article/month/2012/06">2012年06月</a><span>(12)</span></li><li><a href="http://blog.csdn.net/donhao/article/month/2012/02">2012年02月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/donhao/article/month/2012/01">2012年01月</a><span>(14)</span></li><li><a href="http://blog.csdn.net/donhao/article/month/2011/12">2011年12月</a><span>(9)</span></li><li><a href="http://blog.csdn.net/donhao/article/month/2011/11">2011年11月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/donhao/article/month/2011/10">2011年10月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/donhao/article/month/2011/09">2011年09月</a><span>(17)</span></li><li><a href="http://blog.csdn.net/donhao/article/month/2011/08">2011年08月</a><span>(127)</span></li><li><a href="http://blog.csdn.net/donhao/article/month/2011/07">2011年07月</a><span>(47)</span></li><li><a href="http://blog.csdn.net/donhao/article/month/2011/05">2011年05月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/donhao/article/month/2011/02">2011年02月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/donhao/article/month/2011/01">2011年01月</a><span>(54)</span></li><li><a href="http://blog.csdn.net/donhao/article/month/2010/11">2010年11月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/donhao/article/month/2010/10">2010年10月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/donhao/article/month/2010/09">2010年09月</a><span>(11)</span></li><li><a href="http://blog.csdn.net/donhao/article/month/2010/06">2010年06月</a><span>(115)</span></li><li><a href="http://blog.csdn.net/donhao/article/month/2010/05">2010年05月</a><span>(13)</span></li></span><div id="archive_list_button" class="list_closed">展开</div></div>
+    </ul>
+</div>
+<div id="hotarticls" class="panel">
+    <ul class="panel_head"><span>阅读排行</span></ul>
+    <ul class="panel_body itemlist">
+        <li>
+            <a href="http://blog.csdn.net/donhao/article/details/5661038" title="网上收集的C++笔试题目（2）">网上收集的C++笔试题目（2）</a><span>(9090)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/donhao/article/details/5661039" title="网上收集的C++笔试题目（1）">网上收集的C++笔试题目（1）</a><span>(3564)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/donhao/article/details/5661040" title="网上收集的C++笔试题目（3）">网上收集的C++笔试题目（3）</a><span>(3526)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/donhao/article/details/5668499" title="一起来学UML（1）——UML建模工具Umbrello初体验">一起来学UML（1）——UML建模工具Umbrello初体验</a><span>(3425)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/donhao/article/details/5651852" title="一起来学OpenMP（3）——for循环并行化基本用法">一起来学OpenMP（3）——for循环并行化基本用法</a><span>(3067)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/donhao/article/details/5661044" title="网上收集的C++笔试题目（5）">网上收集的C++笔试题目（5）</a><span>(2948)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/donhao/article/details/5657717" title="一起来学OpenMP（9）——线程同步之事件同步机制">一起来学OpenMP（9）——线程同步之事件同步机制</a><span>(2804)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/donhao/article/details/5651782" title="一起来学OpenMP（2）——常用的库函数">一起来学OpenMP（2）——常用的库函数</a><span>(2452)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/donhao/article/details/5661045" title="网上收集的C++笔试题目（4）">网上收集的C++笔试题目（4）</a><span>(2388)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/donhao/article/details/5652394" title="一起来学OpenMP（4）——数据的共享与私有化">一起来学OpenMP（4）——数据的共享与私有化</a><span>(1848)</span>
+        </li>
+    </ul>
+</div>
+<div id="hotarticls2" class="panel">
+    <ul class="panel_head"><span>评论排行</span></ul>
+    <ul class="panel_body itemlist">
+        <li>
+            <a href="http://blog.csdn.net/donhao/article/details/6736480" title="一起来学UML（2）——类图和泛化">一起来学UML（2）——类图和泛化</a><span>(6)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/donhao/article/details/5661039" title="网上收集的C++笔试题目（1）">网上收集的C++笔试题目（1）</a><span>(6)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/donhao/article/details/5651156" title="一起来学OpenMP（1）——初体验">一起来学OpenMP（1）——初体验</a><span>(5)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/donhao/article/details/5657428" title="一起来学OpenMP（8）——线程同步之互斥锁函数">一起来学OpenMP（8）——线程同步之互斥锁函数</a><span>(4)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/donhao/article/details/5668499" title="一起来学UML（1）——UML建模工具Umbrello初体验">一起来学UML（1）——UML建模工具Umbrello初体验</a><span>(4)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/donhao/article/details/5651852" title="一起来学OpenMP（3）——for循环并行化基本用法">一起来学OpenMP（3）——for循环并行化基本用法</a><span>(3)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/donhao/article/details/6731781" title="一起来学Objective-C(1)——Window下开发环境安装和Hello World">一起来学Objective-C(1)——Window下开发环境安装和Hello World</a><span>(3)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/donhao/article/details/7899031" title="iOS基于百度地图的开发(6)——google坐标转换成百度坐标">iOS基于百度地图的开发(6)——google坐标转换成百度坐标</a><span>(2)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/donhao/article/details/5663011" title="网上收集的C++笔试题目（7）">网上收集的C++笔试题目（7）</a><span>(2)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/donhao/article/details/5661043" title="网上收集的C++笔试题目（6）">网上收集的C++笔试题目（6）</a><span>(2)</span>
+        </li>
+    </ul>
+</div>
+<div id="homepageArticles" class="panel">
+    <ul class="panel_head"><span>推荐文章</span></ul>
+    <ul class="panel_body" id="ad_commend">
+    </ul>
+</div>
+<script type="text/javascript">
+    new Ad(12, 'ad_commend');
+</script><div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+    <a href="http://blog.csdn.net/donhao/article/details/6730174#comments">CAN协议</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/jy02326166" class="user_name">jy02326166</a>:
+很好的资料，正在学CAN，请问还有更多入门资料吗？
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/donhao/article/details/7903702#comments">iOS基于百度地图的开发(7)——百度坐标转换成Google坐标</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/sdm1988" class="user_name">sdm1988</a>:
+@PigLikeFly:请问是否确实有将百度坐标转为谷歌坐标误差较小的方法吗？？试了几个公式误差均超...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/donhao/article/details/7903702#comments">iOS基于百度地图的开发(7)——百度坐标转换成Google坐标</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/PigLikeFly" class="user_name">PigLikeFly</a>:
+这个方法可行，但偏差不可控，从1米内到10几米都有。还有其他的办法，可以把糖度控制1厘米内的。
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/donhao/article/details/5651156#comments">一起来学OpenMP（1）——初体验</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/B_Z_Yan" class="user_name">B_Z_Yan</a>:
+学习一下
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/donhao/article/details/5658107#comments">一起来学OpenMP（10）——线程的调度优化</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/guaimaer" class="user_name">guaimaer</a>:
+多谢博主能举例说明，让我豁然开朗
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/donhao/article/details/5657371#comments">一起来学OpenMP（7）——线程同步之临界区</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/guaimaer" class="user_name">guaimaer</a>:
+博主牛人，将atomic和critical的区别明确的讲了出来。其他很多资料都没有这样对比。
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/donhao/article/details/5651852#comments">一起来学OpenMP（3）——for循环并行化基本用法</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/guaimaer" class="user_name">guaimaer</a>:
+for (int i = 0; i != 10; i = i + 1){}的确能编译通过Ubuntu...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/donhao/article/details/6736480#comments">一起来学UML（2）——类图和泛化</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/tommas1988007" class="user_name">tommas1988007</a>:
+@donhao:谢谢
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/donhao/article/details/6736480#comments">一起来学UML（2）——类图和泛化</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/donhao" class="user_name">DonHao</a>:
+@tommas1988007:对的。
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/donhao/article/details/6736480#comments">一起来学UML（2）——类图和泛化</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/tommas1988007" class="user_name">tommas1988007</a>:
+@donhao:如何将两个箭头合并成一个？仅仅是重合在一起就可以了吗？
+    </p>
+    </li>
+</ul>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+
+<div class="clear"></div>
+</div>
+
+<script type="text/javascript" src="./lucene4.0 Demo_files/newblog.min.js"></script>
+<script type="text/javascript" src="./lucene4.0 Demo_files/showblogmedal.ashx"></script>
+
+<script type="text/javascript" src="./lucene4.0 Demo_files/publib_footer.js"></script><link rel="stylesheet" type="text/css" href="./lucene4.0 Demo_files/pub_footer_2012.css"><div class="pub_footerall"><dl><dt></dt> <dd><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a>|<a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a>|<a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a>|<a href="http://www.csdn.net/company/account.html" target="_blank">银行汇款帐号</a>|<a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a>|<a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a>|<a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a>|<a href="mailto:webmaster@csdn.net" title="[GMCP] Compose a new mail to 问题报告" onclick="window.open(&#39;https://mail.google.com/mail/?view=cm&amp;fs=1&amp;tf=1&amp;to=webmaster@csdn.net&#39;,&#39;Compose new message&#39;,&#39;width=640,height=480&#39;);return false" rel="noreferrer">问题报告</a></dd><dd>京&nbsp;ICP&nbsp;证&nbsp;070598&nbsp;号</dd><dd>北京创新乐知信息技术有限公司 版权所有</dd><dd>世纪乐知(北京)网络技术有限公司 提供技术支持</dd><dd>江苏乐知网络技术有限公司 提供商务支持</dd><dd><img src="./lucene4.0 Demo_files/ico_email.gif" alt="" title=""> 联系邮箱：webmaster(at)csdn.net</dd><dd>Copyright © 1999-2012, CSDN.NET, All Rights Reserved&nbsp;<a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="./lucene4.0 Demo_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div><script type="text/javascript" charset="utf-8" src="./lucene4.0 Demo_files/tracking.js"></script>
+
+<script type="text/javascript" src="./lucene4.0 Demo_files/login.js"></script>
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script><img src="http://counter.csdn.net/pv.aspx?id=24" border="0" width="0" height="0" style="display: none !important; visibility: hidden !important; opacity: 0 !important; background-position: 0px 0px; ">
+<script type="text/javascript" src="http://www.csdn.net/ui/scripts/Csdn/counter.js"></script>
+
+
+<script type="text/javascript" src="http://ad.csdn.net/scripts/ad-blog.js"></script>
+</div>
+
+</body></html>
